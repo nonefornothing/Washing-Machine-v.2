@@ -58,10 +58,10 @@ public class Main {
 					} else {
 
 						for (int i = 0; i < banyakPakaian; i++) {
+							int count = 0;
 							System.out.println("Silahkan masukkan jenis pakaian Anda");
 							jenisBaju = input.nextLine();
 							for (int j = 0; j < pakaiankotor.size(); j++) {
-								int count = 0;
 								if (pakaiankotor.get(j).equalsIgnoreCase(jenisBaju)) {
 									pakaianCuci.add(jenisBaju);
 									pakaiankotor.remove(pakaiankotor.get(j));
@@ -80,65 +80,70 @@ public class Main {
 
 			} else if (pilihanMenu == 3) {
 
-				if (pakaianCuci.isEmpty()) {
-					System.out.println("Pakaian yang sudah dicuci kosong");
-				} else {
+				while (true) {
 
-					System.out.println("Total Pakaian sudah di cuci :" + pakaianCuci.size());
-					System.out.println("Mau Ambil Berapa Pakaian ? ");
-					banyakPakaian = getInteger();
-					input.nextLine();
-
-					if (banyakPakaian > pakaianCuci.size()) {
-						System.out.println("Maaf Jumlah Pakaian yg mau di ambil lebih banyak dari yang sudah dicuci ");
+					if (pakaianCuci.isEmpty()) {
+						System.out.println("Pakaian yang sudah dicuci kosong");
 					} else {
-
-//							System.out.println("Silahkan Ambil Pakaian Anda");
-//							for (int i = 0; i < banyakPakaian; i++) {
-//								jenisBaju = input.nextLine();
-//								pakaianBersih.add(jenisBaju);
-//								pakaianCuci.remove(i);
-//							}
-
-						for (int i = 0; i < banyakPakaian; i++) {
-							int count = 0;
-							System.out.println("Silahkan masukkan jenis pakaian Anda");
-							jenisBaju = input.nextLine();
-							for (int j = 0; j < pakaianCuci.size(); j++) {
-								if (pakaianCuci.get(j).equalsIgnoreCase(jenisBaju)) {
-									pakaianBersih.add(jenisBaju);
-									pakaianCuci.remove(pakaianCuci.get(j));
-									count++;
-								} else if (j == pakaianCuci.size() && count != 0) {
-									System.out.println("Tidak Ada Pakaian");
+						
+						System.out.println("Total Pakaian sudah di cuci :" + pakaianCuci.size());
+						System.out.println("Mau Ambil Berapa Pakaian ? ");
+						banyakPakaian = getInteger();
+						input.nextLine();
+						
+						if (banyakPakaian > pakaianCuci.size()) {
+							System.out.println("Maaf Jumlah Pakaian yg mau di ambil lebih banyak dari yang sudah dicuci ");
+						}else {
+							
+							System.out.println("Silahkan Ambil Pakaian Anda");
+							for (int i = 0; i < banyakPakaian; i++) {
+								jenisBaju = input.nextLine();
+								pakaianBersih.add(jenisBaju);
+								pakaianCuci.remove(i);
+							}
+							
+							for (int i = 0; i < banyakPakaian; i++) {
+								int count = 0;
+								System.out.println("Silahkan masukkan jenis pakaian Anda");
+								jenisBaju = input.nextLine();
+								for (int j = 0; j < pakaianCuci.size(); j++) {
+									if (pakaianCuci.get(j).equalsIgnoreCase(jenisBaju)) {
+										pakaianBersih.add(jenisBaju);
+										pakaianCuci.remove(pakaianCuci.get(j));
+										count++;
+									} else if (j == pakaianCuci.size() && count != 0) {
+										System.out.println("Tidak Ada Pakaian");
+									}
 								}
 							}
+							
+							System.out.println("Selamat Anda telah mengambil " + pakaianBersih.size() + " pakaian anda");
+							
 						}
 
-						System.out.println("Selamat Anda telah mengambil " + pakaianBersih.size() + " pakaian anda");
 					}
-
-				}
+						
+					}
 
 			} else if (pilihanMenu == 4) {
 				System.out.println("Pakaian Bersih");
 				for (int i = 0; i < pakaianCuci.size(); i++) {
 					System.out.println(pakaianCuci.get(i) + "       ");
 				}
-
+				
 				System.out.println();
 				System.out.println("pakaian kotor");
 				for (int i = 0; i < pakaiankotor.size(); i++) {
 					System.out.println(pakaiankotor.get(i) + "       ");
 				}
-
+				
 				System.out.println();
 				System.out.println("pakaian diambil");
 				for (int i = 0; i < pakaianBersih.size(); i++) {
 					System.out.println(pakaianBersih.get(i) + "       ");
 				}
 				System.out.println();
-			} else if (pilihanMenu == 5) {
+			} else if(pilihanMenu == 5){
 				System.exit(0);
 			}
 		}
